@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Appbar from "../../components/Appbar";
 
 function Dashboard() {
   return (
-    <div>
+    <>
+      <Appbar />
       <h1>Dashboard</h1>
       <button className="bg-blue-400 rounded p-2 shadow-md">
         <Link
@@ -14,7 +16,7 @@ function Dashboard() {
           Logout
         </Link>
       </button>
-    </div>
+    </>
   );
 }
 

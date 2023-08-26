@@ -23,7 +23,7 @@ const authNavigation = [{ name: "Logout", href: "/logout", current: false }];
 
 const Appbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(theme == "dark" ? true : false);
   const { pathname } = useLocation();
   const [auth, setAuth] = useState(false);
   const [nav, setNav] = useState(navigation);

@@ -49,9 +49,9 @@ const SignupForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {error && <span className="text-red-600">{error}</span>}
+      {error && <span className="text-red-600 dark:text-red-400">{error}</span>}
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
           Your Name:
         </label>
         <input
@@ -66,7 +66,9 @@ const SignupForm: React.FC = () => {
         {errors.userName && <span>Email is required</span>}
       </div>
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">Email:</label>
+        <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
+          Email:
+        </label>
         <input
           type="email"
           id="userEmail"
@@ -78,7 +80,7 @@ const SignupForm: React.FC = () => {
         {errors.userEmail && <span>Email is required</span>}
       </div>
       <div>
-        <label className="block text-gray-700 font-semibold mb-2">
+        <label className="block text-gray-700 dark:text-gray-200 font-semibold mb-2">
           Password:
         </label>
         <input
@@ -91,15 +93,18 @@ const SignupForm: React.FC = () => {
         />
         {errors.userPassword && <span>Password is required</span>}
       </div>
-      <p className="italic mt-2">
+      <p className="italic mt-2 dark:text-gray-200">
         Already have an account,{" "}
-        <Link to={"/signin"} className="text-lime-600">
+        <Link to={"/signin"} className="text-lime-600 dark:text-lime-400">
           Sign In
         </Link>
       </p>
       <button
         type="submit"
-        className="w-full bg-lime-700 hover:bg-lime-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
+        className="w-full bg-lime-700 hover:bg-lime-800 
+        dark:bg-lime-500 dark:hover:bg-lime-600
+        text-white font-semibold py-2 px-4 rounded-md 
+        focus:outline-none focus:shadow-outline-gray mt-4"
       >
         Sign up
       </button>

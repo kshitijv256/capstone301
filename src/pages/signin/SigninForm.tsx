@@ -54,7 +54,7 @@ const SigninForm: React.FC = () => {
           placeholder="Enter email..."
           autoFocus
           {...register("email", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
             errors.email ? "border-red-500" : ""
           }`}
         />
@@ -69,7 +69,7 @@ const SigninForm: React.FC = () => {
           id="password"
           placeholder="Enter password..."
           {...register("password", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
             errors.password ? "border-red-500" : ""
           }`}
         />
@@ -77,13 +77,13 @@ const SigninForm: React.FC = () => {
       </div>
       <p className="italic mt-2">
         New here,{" "}
-        <Link to={"/signup"} className="text-blue-600">
+        <Link to={"/signup"} className="text-lime-600">
           Sign Up
         </Link>
       </p>
       <button
         type="submit"
-        className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
+        className="w-full bg-lime-700 hover:bg-lime-800 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline-gray mt-4"
       >
         Sign In
       </button>

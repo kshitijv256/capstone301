@@ -15,6 +15,7 @@ const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");
 
 const navigation = [
+  { name: "Dashboard", href: "/dashboard", current: false },
   { name: "Signup", href: "/signup", current: false },
   { name: "Signin", href: "/signin", current: false },
 ];
@@ -74,7 +75,6 @@ const Appbar = () => {
                   <div className="ml-10 flex items-baseline space-x-4">
                     {nav.map((item) => {
                       const isCurrent = pathname.includes(item.href);
-
                       return (
                         <Link
                           key={item.name}

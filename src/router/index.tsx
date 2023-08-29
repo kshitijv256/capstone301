@@ -1,10 +1,10 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import Signin from "../pages/signin";
-import Signup from "../pages/signup";
-import Logout from "../pages/logout";
+import Signin from "../views/signin";
+import Signup from "../views/signup";
+import Logout from "../views/logout";
 // import ProtectedRoute from "./ProtectedRoute";
-import Dashboard from "../pages/dashboard";
+import Dashboard from "../views/dashboard";
 
 const router = createBrowserRouter([
   {

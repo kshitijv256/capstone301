@@ -8,7 +8,7 @@ function App() {
   const currentTheme = useContext(ThemeContext);
   return (
     <div
-      className={`min-h-screen h-full overflow-y-scroll no-scrollbar w-full mx-auto ${
+      className={`h-screen overflow-y-scroll no-scrollbar w-full mx-auto ${
         currentTheme.theme === "dark" ? "dark" : ""
       }`}
     >

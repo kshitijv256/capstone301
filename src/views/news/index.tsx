@@ -66,7 +66,7 @@ function NewsSection() {
           ))}
         </ul>
       </div>
-      <div className="h-[70vh] overflow-y-scroll">
+      <div className="max-h-[70vh] h-fit overflow-y-scroll no-scrollbar">
         {filtered?.map((article) => (
           <div
             className="flex flex-col p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 

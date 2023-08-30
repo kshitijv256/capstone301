@@ -16,10 +16,17 @@ function LiveGames() {
     getMatches(setMatches);
   }, []);
   return (
-    <div className="flex w-11/12 gap-2 overflow-x-scroll no-scrollbar">
-      {matches?.matches.map((match) =>
-        match.isRunning ? <LiveGamesTile key={match.id} id={match.id} /> : null
-      )}
+    <div className="w-full flex flex-col items-center">
+      <h1 className="text-4xl text-lime-600 font-bold text-left w-11/12 my-2">
+        Live Matches
+      </h1>
+      <div className="flex w-11/12 gap-2 overflow-x-scroll no-scrollbar">
+        {matches?.matches.map((match) =>
+          match.isRunning ? (
+            <LiveGamesTile key={match.id} id={match.id} />
+          ) : null
+        )}
+      </div>
     </div>
   );
 }

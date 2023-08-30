@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { API_ENDPOINT } from "../../config/constants";
 import { Sport, Sports } from "../../types/sports";
 import { Article } from "../../types/articles";
+import ArticleTile from "../articles/ArticleTile";
 
 const fetchSports = async (setSportsCB: (data: any) => void) => {
   const response = await fetch(`${API_ENDPOINT}/sports`);
@@ -53,7 +54,7 @@ function NewsSection() {
           id="myTab"
         >
           {sports?.sports.map((sport) => (
-            <li className="mr-2">
+            <li key={sport.id} className="mr-2">
               <button
                 className="inline-block p-4 rounded-t-lg text-lime-600"
                 id="profile-tab"
@@ -67,19 +68,13 @@ function NewsSection() {
         </ul>
       </div>
       <div className="max-h-[70vh] h-fit overflow-y-scroll no-scrollbar">
-        {filtered?.map((article) => (
-          <div
-            className="flex flex-col p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
-            flex-grow-0 flex-shrink-0 w-54
-            bg-grey-200 dark:bg-slate-700 dark:text-slate-300"
-          >
-            <p className="font-bold text-lg mb-1 flex justify-between w-full items-center">
-              {article.title}
-            </p>
-            <p className="my-1">{article.sport.name}</p>
-            <p className="my-1">{article.summary}</p>
-          </div>
-        ))}
+        {filtered.length > 0 ? (
+          filtered?.map((article) => (
+            <ArticleTile key={article.id} article={article} />
+          ))
+        ) : (
+          <div className="text-center text-gray-400">No news available</div>
+        )}
       </div>
     </>
   );

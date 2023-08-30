@@ -11,7 +11,9 @@ function Dashboard() {
         <div className="flex w-full justify-center">
           <LiveGames />
         </div>
-        <NewsSection />
+        <div className="w-[70vw]">
+          <NewsSection />
+        </div>
       </div>
     </>
   );

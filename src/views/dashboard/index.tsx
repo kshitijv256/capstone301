@@ -6,7 +6,7 @@ import NewsSection from "../news";
 function Dashboard() {
   return (
     <>
-      <div className="h-screen dark:bg-slate-800 m-0 p-0">
+      <div className="min-h-screen h-full overflow-scroll no-scrollbar dark:bg-slate-800 m-0 p-0">
         <Appbar />
         <div className="flex w-full justify-center">
           <LiveGames />

@@ -1,6 +1,7 @@
 import React from "react";
 import Appbar from "../../components/Appbar";
 import LiveGames from "../match/LiveGames";
+import NewsSection from "../news";
 
 function Dashboard() {
   return (
@@ -10,6 +11,7 @@ function Dashboard() {
         <div className="flex w-full justify-center">
           <LiveGames />
         </div>
+        <NewsSection />
       </div>
     </>
   );

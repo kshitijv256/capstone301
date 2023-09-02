@@ -9,10 +9,12 @@ function ArticleTile(prop: { article: Article }) {
             flex-grow-0 flex-shrink-0 w-54
             bg-grey-200 dark:bg-slate-700 dark:text-slate-300"
     >
+      <p className="my-1 p-2 rounded-lg bg-gray-200 dark:bg-gray-600 w-min whitespace-nowrap">
+        {article.sport.name}
+      </p>
       <p className="font-bold text-lg mb-1 flex justify-between w-full items-center">
         {article.title}
       </p>
-      <p className="my-1">{article.sport.name}</p>
       <p className="my-1">{article.summary}</p>
     </div>
   );

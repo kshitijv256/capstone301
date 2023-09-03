@@ -20,7 +20,7 @@ const fetchNews = async (setNewsCB: (data: Article[]) => void) => {
 
 function NewsSection() {
   const [sports, setSports] = useState<Sports>();
-  const [selectedSport, setSelectedSport] = useState<Sport>();
+  const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
   const [news, setNews] = useState<Article[]>();
   const [filtered, setFiltered] = useState<Article[]>([]);
 
@@ -28,7 +28,6 @@ function NewsSection() {
     const list = news.filter((article) => {
       return article.sport.id === sport.id;
     });
-    console.log(list);
     return list;
   };
 
@@ -43,6 +42,9 @@ function NewsSection() {
       const list = filteredNews(news, selectedSport);
       setFiltered(list);
     }
+    if (selectedSport == null) {
+      setFiltered(news || []);
+    }
   }, [selectedSport, news]);
 
   return (
@@ -53,6 +55,16 @@ function NewsSection() {
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
           id="myTab"
         >
+          <li key={0} className="mr-2">
+            <button
+              className="inline-block p-4 rounded-t-lg text-lime-600"
+              id="profile-tab"
+              type="button"
+              onClick={() => setSelectedSport(null)}
+            >
+              All Sports
+            </button>
+          </li>
           {sports?.sports.map((sport) => (
             <li key={sport.id} className="mr-2">
               <button

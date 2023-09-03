@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Article } from "../../types/articles";
+import ArticleModal from "./ArticleModal";
 
 function ArticleTile(prop: { article: Article }) {
+  const [open, setOpen] = useState(false);
   const { article } = prop;
   return (
     <div
       className="flex rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
             flex-grow-0 flex-shrink-0 
             bg-grey-200 dark:bg-slate-700 dark:text-slate-300"
+      onClick={() => setOpen(true)}
     >
       <div className="w-48 h-48 shrink-0">
         <img
@@ -25,6 +28,7 @@ function ArticleTile(prop: { article: Article }) {
         </p>
         <p className="my-1">{article.summary}</p>
       </div>
+      <ArticleModal article={article} open={open} setOpen={setOpen} />
     </div>
   );
 }

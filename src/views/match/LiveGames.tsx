@@ -20,7 +20,7 @@ function LiveGames() {
       <h1 className="text-4xl text-lime-600 font-bold text-left w-full ml-8 my-2">
         Live Matches
       </h1>
-      <div className="flex w-11/12 gap-2 overflow-x-scroll no-scrollbar">
+      <div className="flex px-4 w-full gap-2 overflow-x-scroll no-scrollbar">
         {matches?.matches.map((match) =>
           match.isRunning ? (
             <LiveGamesTile key={match.id} id={match.id} />

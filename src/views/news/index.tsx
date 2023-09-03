@@ -57,7 +57,11 @@ function NewsSection() {
         >
           <li key={0} className="mr-2">
             <button
-              className="inline-block p-4 rounded-t-lg text-lime-600"
+              className={`${
+                selectedSport === null
+                  ? "bg-lime-400/30 dark:bg-lime-600/30"
+                  : ""
+              } inline-block p-4 rounded-t-lg text-lime-600 hover:text-lime-700 dark:hover:text-lime-500`}
               id="profile-tab"
               type="button"
               onClick={() => setSelectedSport(null)}
@@ -68,7 +72,11 @@ function NewsSection() {
           {sports?.sports.map((sport) => (
             <li key={sport.id} className="mr-2">
               <button
-                className="inline-block p-4 rounded-t-lg text-lime-600"
+                className={`${
+                  selectedSport === sport
+                    ? "bg-lime-400/30 dark:bg-lime-600/30"
+                    : ""
+                } inline-block p-4 rounded-t-lg text-lime-600 hover:text-lime-700 dark:hover:text-lime-500`}
                 id="profile-tab"
                 type="button"
                 onClick={() => setSelectedSport(sport)}

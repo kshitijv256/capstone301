@@ -23,10 +23,14 @@ function ArticleTile(prop: { article: Article }) {
         <p className="mb-1 p-1.5 rounded-lg bg-gray-200 dark:bg-gray-600 w-min whitespace-nowrap">
           {article.sport.name}
         </p>
+
         <p className="font-bold text-lg mb-1 flex justify-between w-full items-center">
           {article.title}
         </p>
         <p className="my-1">{article.summary}</p>
+        <p className="text-gray-800 dark:text-gray-200 italic mt-4 text-sm">
+          {new Date(article.date).toUTCString()}
+        </p>
       </div>
       <ArticleModal article={article} open={open} setOpen={setOpen} />
     </div>

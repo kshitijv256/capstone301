@@ -61,16 +61,43 @@ export default function ArticleModal(prop: {
                 <div className="bg-white dark:bg-slate-700 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
                     <div className="mt-3 w-full text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <div className="flex justify-between">
-                        <Dialog.Title
-                          as="h3"
-                          className="text-2xl font-semibold leading-6 text-gray-900 dark:text-gray-100"
-                        >
-                          {articleData.title}
-                        </Dialog.Title>
-                        <button type="button" onClick={() => setOpen(false)}>
-                          <XCircleIcon className="w-10 h-10 stroke-slate-800 dark:stroke-slate-200" />
-                        </button>
+                      <div className="flex w-full">
+                        <div className="w-48 h-48 shrink-0 mr-4">
+                          <img
+                            src={articleData.thumbnail}
+                            alt={articleData.sport.name}
+                            className="object-cover w-full h-full rounded-md"
+                          />
+                        </div>
+                        <div className="flex w-full justify-between items-start">
+                          <div className="flex flex-col">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-2xl mb-2 font-semibold leading-6 text-gray-900 dark:text-gray-100"
+                            >
+                              {articleData.title}
+                            </Dialog.Title>
+                            <p className="my-2 p-1.5 rounded-lg bg-gray-200 dark:bg-gray-500 text-gray-800 dark:text-gray-200 w-min whitespace-nowrap">
+                              {articleData.sport.name}
+                            </p>
+                            <p className="text-gray-800 dark:text-gray-200 italic my-1">
+                              {new Date(articleData.date).toUTCString()}
+                            </p>
+                            {articleData.teams.length === 2 ? (
+                              <p className="text-gray-800 dark:text-gray-200 mt-2">
+                                Match Between:{" "}
+                                <span className="font-semibold">
+                                  {articleData.teams[0].name +
+                                    " & " +
+                                    articleData.teams[1].name}
+                                </span>
+                              </p>
+                            ) : null}
+                          </div>
+                          <button type="button" onClick={() => setOpen(false)}>
+                            <XCircleIcon className="w-10 h-10 stroke-slate-800 dark:stroke-slate-200" />
+                          </button>
+                        </div>
                       </div>
                       <div className="mt-2">
                         <p className="text-lg text-gray-500 dark:text-gray-200">

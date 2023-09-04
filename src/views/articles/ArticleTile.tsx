@@ -7,9 +7,9 @@ function ArticleTile(prop: { article: Article }) {
   const { article } = prop;
   return (
     <div
-      className="flex rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
+      className="flex rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 my-4 mx-2 
             flex-grow-0 flex-shrink-0 
-            bg-grey-200 dark:bg-slate-700 dark:text-slate-300"
+            bg-white dark:bg-slate-700 dark:text-slate-300"
       onClick={() => setOpen(true)}
     >
       <div className="w-48 h-48 shrink-0">
@@ -27,7 +27,7 @@ function ArticleTile(prop: { article: Article }) {
         <p className="font-bold text-lg mb-1 flex justify-between w-full items-center">
           {article.title}
         </p>
-        <p className="my-1">{article.summary}</p>
+        <p className="mt-1">{article.summary}</p>
         <p className="text-gray-800 dark:text-gray-200 italic mt-4 text-sm">
           {new Date(article.date).toUTCString()}
         </p>

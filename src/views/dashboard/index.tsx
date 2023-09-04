@@ -6,12 +6,12 @@ import NewsSection from "../news";
 function Dashboard() {
   return (
     <>
-      <div className="h-screen overflow-y-auto no-scrollbar dark:bg-slate-800 m-0 p-0">
+      <div className="h-screen overflow-y-auto no-scrollbar bg-gray-100 dark:bg-slate-800 m-0 p-0">
         <Appbar />
         <div className="flex w-full justify-center">
           <LiveGames />
         </div>
-        <div className="p-2">
+        <div className="py-2 px-4">
           <NewsSection />
         </div>
       </div>

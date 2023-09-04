@@ -31,7 +31,7 @@ function LiveGamesTile(props: { id: number }) {
     <div
       className="flex flex-col p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
       flex-grow-0 flex-shrink-0 w-56
-      bg-grey-200 dark:bg-slate-700 dark:text-slate-300"
+      bg-white dark:bg-slate-700 dark:text-slate-300"
     >
       <p className="font-bold text-lg mb-1 flex justify-between w-full items-center">
         {match.sportName}

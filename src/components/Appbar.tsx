@@ -5,11 +5,9 @@ import { UserCircleIcon } from "@heroicons/react/24/outline";
 // import Logo from "../../assets/images/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../context/theme";
+import SettingModal from "../views/settings";
 
-const userNavigation = [
-  { name: "Profile", href: "#" },
-  { name: "Sign out", href: "/logout" },
-];
+const userNavigation = [{ name: "Sign out", href: "/logout" }];
 
 const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");
@@ -28,6 +26,7 @@ const Appbar = () => {
   const { pathname } = useLocation();
   const [auth, setAuth] = useState(false);
   const [nav, setNav] = useState(navigation);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const user = localStorage.getItem("userData") || "";
@@ -217,6 +216,19 @@ const Appbar = () => {
                               )}
                             </Menu.Item>
                           ))}
+                          <Menu.Item>
+                            {({ active }) => (
+                              <button
+                                onClick={() => setIsOpen(true)}
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Settings
+                              </button>
+                            )}
+                          </Menu.Item>
                         </Menu.Items>
                       </Transition>
                     </Menu>
@@ -298,6 +310,19 @@ const Appbar = () => {
                               )}
                             </Menu.Item>
                           ))}
+                          <Menu.Item>
+                            {({ active }) => (
+                              <button
+                                onClick={() => setIsOpen(true)}
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Settings
+                              </button>
+                            )}
+                          </Menu.Item>
                         </Menu.Items>
                       </Transition>
                     </Menu>
@@ -307,6 +332,7 @@ const Appbar = () => {
                 </div>
               </div>
             </div>
+            <SettingModal open={isOpen} setOpen={setIsOpen} />
           </div>
         )}
       </Disclosure>

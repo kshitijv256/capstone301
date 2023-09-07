@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { API_ENDPOINT } from "../../config/constants";
 import { Sport, Sports } from "../../types/sports";
 import { Article } from "../../types/articles";
 import ArticleTile from "../articles/ArticleTile";
+import { getArticles, getSports } from "../../utils/apiUtils";
 
 const fetchSports = async (setSportsCB: (data: any) => void) => {
-  const response = await fetch(`${API_ENDPOINT}/sports`);
-  const data: Sports = await response.json();
+  const data: Sports = await getSports();
   console.log(data);
   setSportsCB(data);
 };
 
 const fetchNews = async (setNewsCB: (data: Article[]) => void) => {
-  const response = await fetch(`${API_ENDPOINT}/articles`);
-  const data: Article[] = await response.json();
+  const data: Article[] = await getArticles();
   console.log(data);
   setNewsCB(data);
 };

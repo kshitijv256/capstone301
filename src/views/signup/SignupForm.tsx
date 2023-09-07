@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { API_ENDPOINT } from "../../config/constants";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { createUser } from "../../utils/apiUtils";
+import { UserContext } from "../../context/user";
 
 type Inputs = {
   organisationName: string;
@@ -11,6 +12,7 @@ type Inputs = {
 };
 
 const SignupForm: React.FC = () => {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
   const {
@@ -22,21 +24,12 @@ const SignupForm: React.FC = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { userName, userEmail, userPassword } = data;
     try {
-      const response = await fetch(`${API_ENDPOINT}/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: userName,
-          email: userEmail,
-          password: userPassword,
-        }),
+      const data = await createUser({
+        name: userName,
+        email: userEmail,
+        password: userPassword,
       });
-
-      if (!response.ok) {
-        throw new Error("Sign-up failed");
-      }
-      console.log("Sign-up successful");
-      const data = await response.json();
+      setUser(data.user);
 
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));

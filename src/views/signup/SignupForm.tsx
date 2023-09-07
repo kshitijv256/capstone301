@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { API_ENDPOINT } from "../../config/constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { createUser } from "../../utils/apiUtils";
 
 type Inputs = {
   organisationName: string;
@@ -22,21 +22,11 @@ const SignupForm: React.FC = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { userName, userEmail, userPassword } = data;
     try {
-      const response = await fetch(`${API_ENDPOINT}/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: userName,
-          email: userEmail,
-          password: userPassword,
-        }),
+      const data = await createUser({
+        name: userName,
+        email: userEmail,
+        password: userPassword,
       });
-
-      if (!response.ok) {
-        throw new Error("Sign-up failed");
-      }
-      console.log("Sign-up successful");
-      const data = await response.json();
 
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));

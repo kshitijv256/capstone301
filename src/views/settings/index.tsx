@@ -1,9 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import DropDown from "./Dropdown";
-import { getSports, getTeams } from "../../utils/apiUtils";
+import { getSports, getTeams, me, setPreferences } from "../../utils/apiUtils";
 import { Sport, Sports } from "../../types/sports";
 import { Team } from "../../types/matches";
+import { UserContext } from "../../context/user";
 
 const fetchSports = async (setSports: (data: Sport[]) => void) => {
   const sports: Sports = await getSports();
@@ -22,15 +29,29 @@ function SettingModal(props: {
   const { open, setOpen } = props;
   const cancelButtonRef = useRef(null);
 
+  const { user, setUser } = useContext(UserContext);
   const [sports, setSports] = useState<Sport[]>([]);
+  const [selectedSports, setSelectedSports] = useState<Sport[]>(
+    user?.preferences?.sports || []
+  );
   const [teams, setTeams] = useState<Team[]>([]);
+  const [selectedTeams, setSelectedTeams] = useState<Team[]>(
+    user?.preferences?.teams || []
+  );
 
   useEffect(() => {
     fetchSports(setSports);
     fetchTeams(setTeams);
   }, []);
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const data = {
+      sports: selectedSports,
+      teams: selectedTeams,
+    };
+    await setPreferences({ preferences: data });
+    const updatedUser = await me();
+    setUser(updatedUser);
     setOpen(false);
   };
 
@@ -84,13 +105,21 @@ function SettingModal(props: {
                                   <p className="text-gray-800 dark:text-gray-300 text-lg font-semibold">
                                     Selected Sports
                                   </p>
-                                  <DropDown list={sports} selectedList={[]} />
+                                  <DropDown
+                                    list={sports}
+                                    selectedList={selectedSports}
+                                    setSelectedCB={setSelectedSports}
+                                  />
                                 </div>
                                 <div>
                                   <p className="text-gray-800 dark:text-gray-300 text-lg font-semibold">
                                     Selected Teams
                                   </p>
-                                  <DropDown list={teams} selectedList={[]} />
+                                  <DropDown
+                                    list={teams}
+                                    selectedList={selectedTeams}
+                                    setSelectedCB={setSelectedTeams}
+                                  />
                                 </div>
                               </div>
                               <div className="flex justify-end gap-2 w-full">

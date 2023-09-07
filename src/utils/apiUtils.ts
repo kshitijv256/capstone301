@@ -64,7 +64,7 @@ export const createUser = async (data: UserSignup) => {
 };
 
 export const loginUser = async (data: UserLogin) => {
-  return await request("/user/sign_in", "POST", data);
+  return await request("/users/sign_in", "POST", data);
 };
 
 export const updateUser = async (data: UserUpdate) => {

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-
-import { API_ENDPOINT } from "../../config/constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { loginUser } from "../../utils/apiUtils";
 
 type Inputs = {
   email: string;
@@ -22,20 +21,7 @@ const SigninForm: React.FC = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
     try {
-      const response = await fetch(`${API_ENDPOINT}/users/sign_in`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Sign-in failed");
-      }
-
-      // extract the response body as JSON data
-      const data = await response.json();
-
-      // Dialogue: After successful signin, first we will save the token in localStorage
+      const data = await loginUser({ email, password });
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
       navigate("/");

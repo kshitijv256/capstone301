@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Match } from "../../types/matches";
-import { API_ENDPOINT } from "../../config/constants";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
+import { getMatch } from "../../utils/apiUtils";
 
 const getCurrentMatch =
   (id: number) => async (setMatchCB: (data: Match) => void) => {
-    const response = await fetch(`${API_ENDPOINT}/matches/${id}`);
-    const data: Match = await response.json();
+    const data: Match = await getMatch(id);
     console.log(data);
     setMatchCB(data);
   };

@@ -1,15 +1,14 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Article } from "../../types/articles";
-import { API_ENDPOINT } from "../../config/constants";
 import { XCircleIcon } from "@heroicons/react/24/outline";
+import { getArticle } from "../../utils/apiUtils";
 
 const fetchArticle = async (
   id: number,
   setArticleData: (data: Article) => void
 ) => {
-  const response = await fetch(`${API_ENDPOINT}/articles/${id}`);
-  const data: Article = await response.json();
+  const data: Article = await getArticle(id);
   setArticleData(data);
 };
 

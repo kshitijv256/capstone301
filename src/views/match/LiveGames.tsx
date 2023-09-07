@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import { API_ENDPOINT } from "../../config/constants";
 import { Matches } from "../../types/matches";
 import LiveGamesTile from "./LiveGamesTile";
+import { getMatches } from "../../utils/apiUtils";
 
-const getMatches = async (setMatchesCB: (data: Matches) => void) => {
-  const response = await fetch(`${API_ENDPOINT}/matches`);
-  const data: Matches = await response.json();
+const fetchMatches = async (setMatchesCB: (data: Matches) => void) => {
+  const data: Matches = await getMatches();
   console.log(data);
   setMatchesCB(data);
 };
@@ -13,7 +12,7 @@ const getMatches = async (setMatchesCB: (data: Matches) => void) => {
 function LiveGames() {
   const [matches, setMatches] = React.useState<Matches>();
   useEffect(() => {
-    getMatches(setMatches);
+    fetchMatches(setMatches);
   }, []);
   return (
     <div className="w-full flex flex-col items-center">

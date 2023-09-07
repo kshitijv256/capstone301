@@ -44,6 +44,11 @@ function SettingModal(props: {
     fetchTeams(setTeams);
   }, []);
 
+  useEffect(() => {
+    setSelectedSports(user?.preferences?.sports || []);
+    setSelectedTeams(user?.preferences?.teams || []);
+  }, [user]);
+
   const handleClick = async () => {
     const data = {
       sports: selectedSports,

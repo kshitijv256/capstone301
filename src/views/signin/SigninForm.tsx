@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { loginUser } from "../../utils/apiUtils";
+import { UserContext } from "../../context/user";
 
 type Inputs = {
   email: string;
@@ -9,6 +10,7 @@ type Inputs = {
 };
 
 const SigninForm: React.FC = () => {
+  const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
   const {
@@ -17,13 +19,14 @@ const SigninForm: React.FC = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
-  // Dialogue 2: Then we will define the handle submit function
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const { email, password } = data;
     try {
       const data = await loginUser({ email, password });
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
+      setUser(data.user);
+      console.log(user);
       navigate("/");
     } catch (error: any) {
       setError(error.message);

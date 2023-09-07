@@ -4,7 +4,7 @@ import { me } from "../utils/apiUtils";
 
 type UserProp = {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
 };
 const UserContext = createContext<UserProp>({
   user: null,

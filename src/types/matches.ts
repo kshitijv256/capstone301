@@ -23,4 +23,5 @@ export interface Score {
 export interface Team {
   id: number;
   name: string;
+  plays: string;
 }

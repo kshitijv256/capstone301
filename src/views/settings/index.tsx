@@ -1,5 +1,21 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import DropDown from "./Dropdown";
+import { getSports, getTeams } from "../../utils/apiUtils";
+import { Sport, Sports } from "../../types/sports";
+import { Team } from "../../types/matches";
+
+const fetchSports = async (setSports: (data: Sport[]) => void) => {
+  const response = await getSports();
+  const sports: Sports = await response.json();
+  setSports(sports.sports);
+};
+
+const fetchTeams = async (setTeams: (data: Team[]) => void) => {
+  const response = await getTeams();
+  const teams: Team[] = await response.json();
+  setTeams(teams);
+};
 
 function SettingModal(props: {
   open: boolean;
@@ -7,6 +23,15 @@ function SettingModal(props: {
 }) {
   const { open, setOpen } = props;
   const cancelButtonRef = useRef(null);
+
+  const [sports, setSports] = useState<Sport[]>([]);
+  const [teams, setTeams] = useState<Team[]>([]);
+
+  useEffect(() => {
+    fetchSports(setSports);
+    fetchTeams(setTeams);
+  }, []);
+
   return (
     <div>
       <Transition.Root show={open} as={Fragment}>
@@ -52,6 +77,12 @@ function SettingModal(props: {
                               >
                                 Settings
                               </Dialog.Title>
+                              <div className="h-96">
+                                <p>Selected Sports</p>
+                                <DropDown list={sports} selectedList={[]} />
+                                <p>Selected Teams</p>
+                                <DropDown list={teams} selectedList={[]} />
+                              </div>
                             </div>
                           </div>
                         </div>

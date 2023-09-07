@@ -6,14 +6,12 @@ import { Sport, Sports } from "../../types/sports";
 import { Team } from "../../types/matches";
 
 const fetchSports = async (setSports: (data: Sport[]) => void) => {
-  const response = await getSports();
-  const sports: Sports = await response.json();
+  const sports: Sports = await getSports();
   setSports(sports.sports);
 };
 
 const fetchTeams = async (setTeams: (data: Team[]) => void) => {
-  const response = await getTeams();
-  const teams: Team[] = await response.json();
+  const teams: Team[] = await getTeams();
   setTeams(teams);
 };
 
@@ -31,6 +29,10 @@ function SettingModal(props: {
     fetchSports(setSports);
     fetchTeams(setTeams);
   }, []);
+
+  const handleClick = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -64,7 +66,7 @@ function SettingModal(props: {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[80vw]">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 text-left shadow-xl transition-all sm:my-8 w-fit">
                   <div className="bg-white dark:bg-slate-700 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                     <div className="sm:flex sm:items-start">
                       <div className="mt-3 w-full text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -77,11 +79,33 @@ function SettingModal(props: {
                               >
                                 Settings
                               </Dialog.Title>
-                              <div className="h-96">
-                                <p>Selected Sports</p>
-                                <DropDown list={sports} selectedList={[]} />
-                                <p>Selected Teams</p>
-                                <DropDown list={teams} selectedList={[]} />
+                              <div className="flex gap-4 flex-wrap mt-4">
+                                <div>
+                                  <p className="text-gray-800 dark:text-gray-300 text-lg font-semibold">
+                                    Selected Sports
+                                  </p>
+                                  <DropDown list={sports} selectedList={[]} />
+                                </div>
+                                <div>
+                                  <p className="text-gray-800 dark:text-gray-300 text-lg font-semibold">
+                                    Selected Teams
+                                  </p>
+                                  <DropDown list={teams} selectedList={[]} />
+                                </div>
+                              </div>
+                              <div className="flex justify-end gap-2 w-full">
+                                <button
+                                  onClick={() => setOpen(false)}
+                                  className="text-gray-900 dark:text-gray-100 rounded-md bg-gray-400/60 dark:bg-gray-600/60 hover:bg-gray-400 dark:hover:bg-gray-600 p-2"
+                                >
+                                  Cancel
+                                </button>
+                                <button
+                                  onClick={handleClick}
+                                  className="text-gray-900 dark:text-gray-100 rounded-md bg-lime-400/60 dark:bg-lime-600/60 hover:bg-lime-400 dark:hover:bg-lime-600 p-2"
+                                >
+                                  Save Preference
+                                </button>
                               </div>
                             </div>
                           </div>

@@ -3,6 +3,7 @@ import { Sport, Sports } from "../../types/sports";
 import { Article } from "../../types/articles";
 import ArticleTile from "../articles/ArticleTile";
 import { getArticles, getSports } from "../../utils/apiUtils";
+import Loading from "../../components/Loading";
 
 const fetchSports = async (setSportsCB: (data: any) => void) => {
   const data: Sports = await getSports();
@@ -44,6 +45,18 @@ function NewsSection() {
       setFiltered(news || []);
     }
   }, [selectedSport, news]);
+
+  if (!news) {
+    return (
+      <div
+        className="flex flex-col items-center justify-center p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
+    flex-grow-0 flex-shrink-0 w-64
+    bg-white dark:bg-slate-700 dark:text-slate-300"
+      >
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <>

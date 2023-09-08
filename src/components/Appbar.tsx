@@ -66,11 +66,13 @@ const Appbar = () => {
                 <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-slate-700 divide-y-2 divide-green-500 dark:dividde-green-300 ">
                   <div className="pt-5 pb-6 px-5">
                     <div className="flex items-center justify-between">
-                      <img
-                        className="h-12 w-auto"
-                        src={Logo}
-                        alt="Smarter Tasks"
-                      />
+                      <Link to={"/"}>
+                        <img
+                          className="h-12 w-auto"
+                          src={Logo}
+                          alt="Sports News"
+                        />
+                      </Link>
                       {/* <h1 className="text-2xl font-bold text-green-600">
                         Navigation
                       </h1> */}
@@ -144,7 +146,9 @@ const Appbar = () => {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center justify-between w-full">
                 <div className="flex-shrink-0">
-                  <img className="h-16" src={Logo} alt="Smarter Tasks" />
+                  <Link to={"/"}>
+                    <img className="h-16 w-auto" src={Logo} alt="Sports News" />
+                  </Link>
                   {/* <h1 className="text-2xl font-bold text-green-600">
                     Need Logo
                   </h1> */}

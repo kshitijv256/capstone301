@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Appbar from "../../components/Appbar";
 import LiveGames from "../match/LiveGames";
-import NewsSection from "../news";
+import NewsSection from "../articles";
 import { UserContext } from "../../context/user";
 import { me } from "../../utils/apiUtils";
 import { User } from "../../types/user";

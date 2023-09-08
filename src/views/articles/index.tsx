@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Sport, Sports } from "../../types/sports";
 import { Article } from "../../types/articles";
-import ArticleTile from "../articles/ArticleTile";
+import ArticleTile from "./ArticleTile";
 import { getArticles, getSports } from "../../utils/apiUtils";
 import Loading from "../../components/Loading";
 
@@ -49,9 +49,8 @@ function NewsSection() {
   if (!news) {
     return (
       <div
-        className="flex flex-col items-center justify-center p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
-    flex-grow-0 flex-shrink-0 w-64
-    bg-white dark:bg-slate-700 dark:text-slate-300"
+        className="flex flex-col items-center justify-center m-2 
+    flex-grow-0 flex-shrink-0 w-full h-full"
       >
         <Loading />
       </div>
@@ -60,7 +59,7 @@ function NewsSection() {
 
   return (
     <>
-      <div className="m-4 text-lime-600 text-4xl font-bold">Trending News</div>
+      <div className="m-4 text-green-600 text-4xl font-bold">Trending News</div>
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -70,9 +69,9 @@ function NewsSection() {
             <button
               className={`${
                 selectedSport === null
-                  ? "bg-lime-400/30 dark:bg-lime-600/30"
+                  ? "bg-green-400/30 dark:bg-green-600/30"
                   : ""
-              } inline-block p-4 rounded-t-lg text-lime-600 hover:text-lime-700 dark:hover:text-lime-500`}
+              } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
               id="profile-tab"
               type="button"
               onClick={() => setSelectedSport(null)}
@@ -85,9 +84,9 @@ function NewsSection() {
               <button
                 className={`${
                   selectedSport === sport
-                    ? "bg-lime-400/30 dark:bg-lime-600/30"
+                    ? "bg-green-400/30 dark:bg-green-600/30"
                     : ""
-                } inline-block p-4 rounded-t-lg text-lime-600 hover:text-lime-700 dark:hover:text-lime-500`}
+                } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
                 id="profile-tab"
                 type="button"
                 onClick={() => setSelectedSport(sport)}

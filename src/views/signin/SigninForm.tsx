@@ -10,7 +10,7 @@ type Inputs = {
 };
 
 const SigninForm: React.FC = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
   const {
@@ -25,11 +25,11 @@ const SigninForm: React.FC = () => {
       const data = await loginUser({ email, password });
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
-      setUser(data.user);
       console.log(user);
       navigate("/");
     } catch (error: any) {
-      setError(error.message);
+      const err = JSON.parse(error.message);
+      setError(err.errors[0]);
     }
   };
   return (

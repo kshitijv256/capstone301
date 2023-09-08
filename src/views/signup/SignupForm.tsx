@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createUser } from "../../utils/apiUtils";
-import { UserContext } from "../../context/user";
 
 type Inputs = {
   organisationName: string;
@@ -12,7 +11,6 @@ type Inputs = {
 };
 
 const SignupForm: React.FC = () => {
-  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
   const {
@@ -29,8 +27,6 @@ const SignupForm: React.FC = () => {
         email: userEmail,
         password: userPassword,
       });
-      setUser(data.user);
-
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
       navigate("/");

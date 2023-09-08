@@ -37,7 +37,7 @@ function LiveGamesTile(props: {
       flex-grow-0 flex-shrink-0 w-64
       bg-white dark:bg-slate-700 dark:text-slate-300"
     >
-      <p className="font-bold text-lg mb-1 flex justify-between w-full items-start">
+      <div className="font-bold text-lg mb-1 flex justify-between w-full items-start">
         <span>
           <div className="flex gap-4 text-lime-600 items-center text-base font-light">
             {fav && (
@@ -57,7 +57,7 @@ function LiveGamesTile(props: {
         <button>
           <ArrowPathIcon className="w-5 h-5" onClick={refresh} />
         </button>
-      </p>
+      </div>
       <p className="my-1">{match.location}</p>
       {Object.keys(match.score).map((key) => (
         <p key={key} className="flex w-full justify-between">

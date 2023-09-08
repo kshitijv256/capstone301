@@ -22,10 +22,12 @@ function LiveGames() {
 
   const filterMatches = () => {
     if (userData.user) {
-      const userSports =
-        userData?.user?.preferences.sports.map((sport) => sport.name) || [];
-      const userTeams =
-        userData?.user?.preferences.teams.map((team) => team.id) || [];
+      const userSports = userData.user.preferences.sports
+        ? userData?.user?.preferences.sports.map((sport) => sport.name)
+        : [];
+      const userTeams = userData.user.preferences.teams
+        ? userData?.user?.preferences.teams.map((team) => team.id)
+        : [];
       const filtered = matches.matches.filter(
         (match) =>
           userSports.includes(match.sportName) ||

@@ -37,7 +37,7 @@ export const request = async (
   }
 
   const token = localStorage.getItem("authToken");
-  const auth = token ? "Token " + token : "";
+  const auth = token ? "Token " + token : "Token ";
   const response = await fetch(url, {
     method,
     headers: {

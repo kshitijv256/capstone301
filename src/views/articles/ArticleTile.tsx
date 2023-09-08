@@ -8,11 +8,11 @@ function ArticleTile(prop: { article: Article }) {
   return (
     <div
       className="flex rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 my-4 mx-2 
-            flex-grow-0 flex-shrink-0 
+            flex-grow-0 flex-shrink-0
             bg-white dark:bg-slate-700 dark:text-slate-300"
       onClick={() => setOpen(true)}
     >
-      <div className="w-48 h-48 shrink-0">
+      <div className="w-48 shrink-0">
         <img
           src={article.thumbnail}
           alt={article.sport.name}

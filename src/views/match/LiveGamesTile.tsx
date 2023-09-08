@@ -3,6 +3,7 @@ import { Match } from "../../types/matches";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { getMatch } from "../../utils/apiUtils";
 import { PlayCircleIcon, StarIcon } from "@heroicons/react/24/solid";
+import Loading from "../../components/Loading";
 
 const getCurrentMatch =
   (id: number) => async (setMatchCB: (data: Match) => void) => {
@@ -29,7 +30,15 @@ function LiveGamesTile(props: {
   };
 
   if (!match) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="flex flex-col items-center justify-center p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
+    flex-grow-0 flex-shrink-0 w-64
+    bg-white dark:bg-slate-700 dark:text-slate-300"
+      >
+        <Loading />
+      </div>
+    );
   }
   return (
     <div

@@ -60,7 +60,7 @@ const Appbar = () => {
         "
       >
         {({ open }) => (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto px-4 sm:px-6 lg:px-4 py-2">
             {open && (
               <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
                 <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-slate-700 divide-y-2 divide-green-500 dark:dividde-green-300 ">

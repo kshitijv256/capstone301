@@ -92,7 +92,7 @@ function NewsSection() {
 
   return (
     <>
-      <div className="m-4 text-green-600 text-4xl font-bold">Trending News</div>
+      <div className="m-4 text-green-600 text-3xl font-bold">Trending News</div>
       <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
         <ul
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -154,7 +154,11 @@ function NewsSection() {
             <ArticleTile key={article.id} article={article} />
           ))
         ) : (
-          <div className="text-center text-gray-400">No news available</div>
+          <div className="text-center text-gray-400">
+            {showFav
+              ? "No Favorites seleted, Go to settings to set"
+              : "No news available"}
+          </div>
         )}
       </div>
     </>

@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { User } from "../types/user";
 import { me } from "../utils/apiUtils";
 
-type UserProp = {
+export type UserProp = {
   user: User | null;
   setUser: (user: User | null) => void;
 };
@@ -12,9 +12,13 @@ const UserContext = createContext<UserProp>({
 });
 
 const fetchUser = async (setUserCB: (data: User) => void) => {
-  const data: User = await me();
-  console.log(data);
-  setUserCB(data);
+  try {
+    const data: User = await me();
+    console.log(data);
+    setUserCB(data);
+  } catch (err: any) {
+    console.log(err.message);
+  }
 };
 const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);

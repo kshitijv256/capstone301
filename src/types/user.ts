@@ -25,8 +25,8 @@ export type UserUpdate = {
 };
 
 export type Preferences = {
-  sports: Sport[];
-  teams: Team[];
+  sports?: Sport[];
+  teams?: Team[];
 };
 
 export type SetPreferences = {

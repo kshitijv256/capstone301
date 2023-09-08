@@ -136,7 +136,7 @@ function SettingModal(props: {
                                 </button>
                                 <button
                                   onClick={handleClick}
-                                  className="text-gray-900 dark:text-gray-100 rounded-md bg-lime-400/60 dark:bg-lime-600/60 hover:bg-lime-400 dark:hover:bg-lime-600 p-2"
+                                  className="text-gray-900 dark:text-gray-100 rounded-md bg-green-400/60 dark:bg-green-600/60 hover:bg-green-400 dark:hover:bg-green-600 p-2"
                                 >
                                   Save Preference
                                 </button>

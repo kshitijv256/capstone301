@@ -3,6 +3,7 @@ import { Match } from "../../types/matches";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { getMatch } from "../../utils/apiUtils";
 import { PlayCircleIcon, StarIcon } from "@heroicons/react/24/solid";
+import Loading from "../../components/Loading";
 
 const getCurrentMatch =
   (id: number) => async (setMatchCB: (data: Match) => void) => {
@@ -29,7 +30,15 @@ function LiveGamesTile(props: {
   };
 
   if (!match) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="flex flex-col items-center justify-center p-4 rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 m-2 
+    flex-grow-0 flex-shrink-0 w-64
+    bg-white dark:bg-slate-700 dark:text-slate-300"
+      >
+        <Loading />
+      </div>
+    );
   }
   return (
     <div
@@ -37,12 +46,12 @@ function LiveGamesTile(props: {
       flex-grow-0 flex-shrink-0 w-64
       bg-white dark:bg-slate-700 dark:text-slate-300"
     >
-      <p className="font-bold text-lg mb-1 flex justify-between w-full items-start">
+      <div className="font-bold text-lg mb-1 flex justify-between w-full items-start">
         <span>
-          <div className="flex gap-4 text-lime-600 items-center text-base font-light">
+          <div className="flex gap-4 text-green-500 font-normal items-center text-base">
             {fav && (
               <span className="flex gap-1 items-center">
-                <StarIcon className="w-5 h-5 text-lime-600" />
+                <StarIcon className="w-5 h-5 text-green-500" />
                 {"  Favorite"}
               </span>
             )}
@@ -57,7 +66,7 @@ function LiveGamesTile(props: {
         <button>
           <ArrowPathIcon className="w-5 h-5" onClick={refresh} />
         </button>
-      </p>
+      </div>
       <p className="my-1">{match.location}</p>
       {Object.keys(match.score).map((key) => (
         <p key={key} className="flex w-full justify-between">

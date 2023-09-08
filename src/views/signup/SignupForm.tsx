@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createUser } from "../../utils/apiUtils";
-import { UserContext } from "../../context/user";
 
 type Inputs = {
   organisationName: string;
@@ -12,7 +11,6 @@ type Inputs = {
 };
 
 const SignupForm: React.FC = () => {
-  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
   const {
@@ -29,8 +27,6 @@ const SignupForm: React.FC = () => {
         email: userEmail,
         password: userPassword,
       });
-      setUser(data.user);
-
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
       navigate("/");
@@ -52,7 +48,7 @@ const SignupForm: React.FC = () => {
           id="userName"
           autoFocus
           {...register("userName", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.userName ? "border-red-500" : ""
           }`}
         />
@@ -66,7 +62,7 @@ const SignupForm: React.FC = () => {
           type="email"
           id="userEmail"
           {...register("userEmail", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.userEmail ? "border-red-500" : ""
           }`}
         />
@@ -80,7 +76,7 @@ const SignupForm: React.FC = () => {
           type="password"
           id="userPassword"
           {...register("userPassword", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.userPassword ? "border-red-500" : ""
           }`}
         />
@@ -88,14 +84,14 @@ const SignupForm: React.FC = () => {
       </div>
       <p className="italic mt-2 dark:text-gray-200">
         Already have an account,{" "}
-        <Link to={"/signin"} className="text-lime-600 dark:text-lime-400">
+        <Link to={"/signin"} className="text-green-600 dark:text-green-400">
           Sign In
         </Link>
       </p>
       <button
         type="submit"
-        className="w-full bg-lime-700 hover:bg-lime-800 
-        dark:bg-lime-500 dark:hover:bg-lime-600
+        className="w-full bg-green-700 hover:bg-green-800 
+        dark:bg-green-500 dark:hover:bg-green-600
         text-white font-semibold py-2 px-4 rounded-md 
         focus:outline-none focus:shadow-outline-gray mt-4"
       >

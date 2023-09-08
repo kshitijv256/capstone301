@@ -10,7 +10,7 @@ type Inputs = {
 };
 
 const SigninForm: React.FC = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
   const {
@@ -25,11 +25,11 @@ const SigninForm: React.FC = () => {
       const data = await loginUser({ email, password });
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
-      setUser(data.user);
       console.log(user);
       navigate("/");
     } catch (error: any) {
-      setError(error.message);
+      const err = JSON.parse(error.message);
+      setError(err.errors[0]);
     }
   };
   return (
@@ -45,7 +45,7 @@ const SigninForm: React.FC = () => {
           placeholder="Enter email..."
           autoFocus
           {...register("email", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.email ? "border-red-500" : ""
           }`}
         />
@@ -60,7 +60,7 @@ const SigninForm: React.FC = () => {
           id="password"
           placeholder="Enter password..."
           {...register("password", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-lime-500 focus:shadow-outline-lime ${
+          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.password ? "border-red-500" : ""
           }`}
         />
@@ -68,14 +68,14 @@ const SigninForm: React.FC = () => {
       </div>
       <p className="italic mt-2 dark:text-gray-200">
         New here,{" "}
-        <Link to={"/signup"} className="text-lime-600 dark:text-lime-400">
+        <Link to={"/signup"} className="text-green-600 dark:text-green-400">
           Sign Up
         </Link>
       </p>
       <button
         type="submit"
-        className="w-full bg-lime-700 hover:bg-lime-800 
-        dark:bg-lime-500 dark:hover:bg-lime-600
+        className="w-full bg-green-700 hover:bg-green-800 
+        dark:bg-green-500 dark:hover:bg-green-600
         text-white font-semibold py-2 px-4 rounded-md 
         focus:outline-none focus:shadow-outline-gray mt-4"
       >

@@ -2,7 +2,7 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Disclosure, Menu, Switch, Transition } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-// import Logo from "../../assets/images/logo.png";
+import Logo from "../assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../context/theme";
 import SettingModal from "../views/settings";
@@ -55,23 +55,27 @@ const Appbar = () => {
         as="nav"
         className="border-b border-slate-200 
         dark:border-slate-700 
-        bg-gradient-to-tr from-slate-100 via-slate-100 to-lime-300 
-        dark:from-slate-800 dark:via-slate-800 dark:to-lime-800
+        bg-gradient-to-tr from-slate-100 via-slate-100 to-green-300 
+        dark:from-slate-800 dark:via-slate-800 dark:to-green-800
         "
       >
         {({ open }) => (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto px-4 sm:px-6 lg:px-4 py-2">
             {open && (
               <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
-                <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-slate-700 divide-y-2 divide-lime-500 dark:dividde-lime-300 ">
+                <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-slate-700 divide-y-2 divide-green-500 dark:dividde-green-300 ">
                   <div className="pt-5 pb-6 px-5">
                     <div className="flex items-center justify-between">
-                      {/* <img className="h-8 w-auto" src={Logo} alt="Smarter Tasks" /> */}
-                      <h1 className="text-2xl font-bold text-lime-600">
+                      <img
+                        className="h-12 w-auto"
+                        src={Logo}
+                        alt="Smarter Tasks"
+                      />
+                      {/* <h1 className="text-2xl font-bold text-green-600">
                         Navigation
-                      </h1>
+                      </h1> */}
                       <div className="-mr-2">
-                        <Disclosure.Button className="bg-white dark:bg-slate-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-lime-600 dark:hover:text-lime-500 hover:bg-gray-100 dark:hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lime-600">
+                        <Disclosure.Button className="bg-white dark:bg-slate-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-green-600 dark:hover:text-green-500 hover:bg-gray-100 dark:hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600">
                           <span className="sr-only">Close menu</span>
                           {/* <!-- Heroicon name: outline/x --> */}
                           <svg
@@ -99,7 +103,7 @@ const Appbar = () => {
                         <Link
                           key={item.name}
                           to={item.href}
-                          className="text-base font-medium text-gray-900 dark:text-slate-300 hover:text-lime-600 dark:hover:text-lime-500"
+                          className="text-base font-medium text-gray-900 dark:text-slate-300 hover:text-green-600 dark:hover:text-green-500"
                         >
                           {item.name}
                         </Link>
@@ -120,7 +124,7 @@ const Appbar = () => {
                       <Switch
                         checked={enabled}
                         onChange={toggleTheme}
-                        className={`${enabled ? "bg-lime-600" : "bg-slate-700"}
+                        className={`${enabled ? "bg-green-600" : "bg-slate-700"}
               relative inline-flex h-[24px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                       >
                         <span className="sr-only">Use setting</span>
@@ -140,10 +144,10 @@ const Appbar = () => {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center justify-between w-full">
                 <div className="flex-shrink-0">
-                  {/* <img className="h-8" src={Logo} alt="Smarter Tasks" /> */}
-                  <h1 className="text-2xl font-bold text-lime-600">
+                  <img className="h-16" src={Logo} alt="Smarter Tasks" />
+                  {/* <h1 className="text-2xl font-bold text-green-600">
                     Need Logo
-                  </h1>
+                  </h1> */}
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
@@ -155,8 +159,8 @@ const Appbar = () => {
                           to={item.href}
                           className={classNames(
                             isCurrent
-                              ? "bg-slate-50 dark:bg-slate-700 text-lime-700 dark:text-lime-500"
-                              : "text-slate-500 dark:text-slate-300 dark:hover:text-lime-600 hover:text-lime-600",
+                              ? "bg-slate-50 dark:bg-slate-700 text-green-700 dark:text-green-500"
+                              : "text-slate-500 dark:text-slate-300 dark:hover:text-green-600 hover:text-green-600",
                             "rounded-md px-3 py-2 text-sm font-medium"
                           )}
                           aria-current={isCurrent ? "page" : undefined}
@@ -176,7 +180,7 @@ const Appbar = () => {
                   <Switch
                     checked={enabled}
                     onChange={toggleTheme}
-                    className={`${enabled ? "bg-lime-600" : "bg-slate-700"}
+                    className={`${enabled ? "bg-green-600" : "bg-slate-700"}
               relative inline-flex h-[24px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
                     <span className="sr-only">Use setting</span>
@@ -190,8 +194,8 @@ const Appbar = () => {
                     <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button
-                          className="rounded-full bg-white p-1 text-gray-400 hover:text-lime-600 
-                                    dark:bg-slate-600 dark:text-slate-300 dark:hover:text-lime-500"
+                          className="rounded-full bg-white p-1 text-gray-400 hover:text-green-600 
+                                    dark:bg-slate-600 dark:text-slate-300 dark:hover:text-green-500"
                         >
                           <UserCircleIcon
                             className="h-6 w-6"
@@ -251,7 +255,7 @@ const Appbar = () => {
               </div>
               <div className="-mr-2 flex md:hidden">
                 {/* <!-- Mobile menu button --> */}
-                <Disclosure.Button className="bg-white dark:bg-slate-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-lime-600 dark:hover:text-lime-500 hover:bg-gray-100 dark:hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lime-600">
+                <Disclosure.Button className="bg-white dark:bg-slate-600 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-green-600 dark:hover:text-green-500 hover:bg-gray-100 dark:hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-600">
                   <span className="sr-only">Open main menu</span>
                   {/* <!-- Heroicon name: outline/menu --> */}
                   <svg
@@ -273,7 +277,7 @@ const Appbar = () => {
                 {/* <Switch
                   checked={enabled}
                   onChange={toggleTheme}
-                  className={`${enabled ? "bg-lime-600" : "bg-slate-700"}
+                  className={`${enabled ? "bg-green-600" : "bg-slate-700"}
               relative inline-flex h-[24px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                 >
                   <span className="sr-only">Use setting</span>

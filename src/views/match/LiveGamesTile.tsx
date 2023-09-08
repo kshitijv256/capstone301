@@ -48,10 +48,10 @@ function LiveGamesTile(props: {
     >
       <div className="font-bold text-lg mb-1 flex justify-between w-full items-start">
         <span>
-          <div className="flex gap-4 text-green-600 items-center text-base font-light">
+          <div className="flex gap-4 text-green-500 font-normal items-center text-base">
             {fav && (
               <span className="flex gap-1 items-center">
-                <StarIcon className="w-5 h-5 text-green-600" />
+                <StarIcon className="w-5 h-5 text-green-500" />
                 {"  Favorite"}
               </span>
             )}

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Sport, Sports } from "../../types/sports";
 import { Article } from "../../types/articles";
 import ArticleTile from "./ArticleTile";
 import { getArticles, getSports } from "../../utils/apiUtils";
 import Loading from "../../components/Loading";
+import { UserContext } from "../../context/user";
+import { User } from "../../types/user";
 
 const fetchSports = async (setSportsCB: (data: any) => void) => {
   const data: Sports = await getSports();
@@ -17,18 +19,42 @@ const fetchNews = async (setNewsCB: (data: Article[]) => void) => {
   setNewsCB(data);
 };
 
+const filteredNews = (news: Article[], sport: Sport) => {
+  const list = news.filter((article) => {
+    return article.sport.id === sport.id;
+  });
+  return list;
+};
+
+const filterFavorites = async (
+  articles: Article[],
+  setFavList: (data: Article[]) => void,
+  user: User | null
+) => {
+  if (user) {
+    const userSports = user.preferences.sports
+      ? user?.preferences.sports.map((sport) => sport.name)
+      : [];
+    const userTeams = user.preferences.teams
+      ? user?.preferences.teams.map((team) => team.id)
+      : [];
+    const filtered = articles.filter(
+      (article) =>
+        userSports.includes(article.sport.name) ||
+        userTeams.includes(article.teams[0]?.id || article.teams[1]?.id)
+    );
+    setFavList(filtered);
+  }
+};
+
 function NewsSection() {
+  const { user } = useContext(UserContext);
   const [sports, setSports] = useState<Sports>();
   const [selectedSport, setSelectedSport] = useState<Sport | null>(null);
-  const [news, setNews] = useState<Article[]>();
+  const [news, setNews] = useState<Article[]>([]);
   const [filtered, setFiltered] = useState<Article[]>([]);
-
-  const filteredNews = (news: Article[], sport: Sport) => {
-    const list = news.filter((article) => {
-      return article.sport.id === sport.id;
-    });
-    return list;
-  };
+  const [favList, setFavList] = useState<Article[]>([]);
+  const [showFav, setShowFav] = useState<boolean>(false);
 
   useEffect(() => {
     fetchSports(setSports);
@@ -36,15 +62,22 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
-    console.log(news);
-    if (selectedSport && news) {
-      const list = filteredNews(news, selectedSport);
-      setFiltered(list);
+    if (!showFav) {
+      if (selectedSport && news) {
+        const list = filteredNews(news, selectedSport);
+        setFiltered(list);
+      }
+      if (selectedSport == null) {
+        setFiltered(news || []);
+      }
+    } else {
+      setFiltered(favList);
     }
-    if (selectedSport == null) {
-      setFiltered(news || []);
-    }
-  }, [selectedSport, news]);
+  }, [selectedSport, news, showFav, favList]);
+
+  useEffect(() => {
+    filterFavorites(news, setFavList, user);
+  }, [user, news]);
 
   if (!news) {
     return (
@@ -68,13 +101,28 @@ function NewsSection() {
           <li key={0} className="mr-2">
             <button
               className={`${
-                selectedSport === null
+                showFav ? "bg-green-400/30 dark:bg-green-600/30" : ""
+              } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
+              id="profile-tab"
+              type="button"
+              onClick={() => setShowFav(true)}
+            >
+              Favorites
+            </button>
+          </li>
+          <li key={"x"} className="mr-2">
+            <button
+              className={`${
+                selectedSport === null && !showFav
                   ? "bg-green-400/30 dark:bg-green-600/30"
                   : ""
               } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
               id="profile-tab"
               type="button"
-              onClick={() => setSelectedSport(null)}
+              onClick={() => {
+                setShowFav(false);
+                setSelectedSport(null);
+              }}
             >
               All Sports
             </button>
@@ -83,13 +131,16 @@ function NewsSection() {
             <li key={sport.id} className="mr-2">
               <button
                 className={`${
-                  selectedSport === sport
+                  selectedSport === sport && !showFav
                     ? "bg-green-400/30 dark:bg-green-600/30"
                     : ""
                 } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
                 id="profile-tab"
                 type="button"
-                onClick={() => setSelectedSport(sport)}
+                onClick={() => {
+                  setShowFav(false);
+                  setSelectedSport(sport);
+                }}
               >
                 {sport.name}
               </button>

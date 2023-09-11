@@ -7,7 +7,10 @@ import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../context/theme";
 import SettingModal from "../views/settings";
 
-const userNavigation = [{ name: "Log out", href: "/logout" }];
+const userNavigation = [
+  { name: "Log out", href: "/logout" },
+  { name: "Reset password", href: "/reset" },
+];
 
 const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");

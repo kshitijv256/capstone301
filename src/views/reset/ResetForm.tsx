@@ -40,7 +40,7 @@ const ResetForm = () => {
           placeholder="Enter current password..."
           autoFocus
           {...register("current_password", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
+          className={`w-full border rounded-md py-2 px-3 mt-2 mb-4 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.current_password ? "border-red-500" : ""
           }`}
         />
@@ -57,7 +57,7 @@ const ResetForm = () => {
           id="new_password"
           placeholder="Enter new password..."
           {...register("new_password", { required: true })}
-          className={`w-full border rounded-md py-2 px-3 mb-1 mt-1 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
+          className={`w-full border rounded-md py-2 px-3 mb-4 mt-2 text-gray-700 leading-tight focus:outline-none focus:border-green-500 focus:shadow-outline-green ${
             errors.new_password ? "border-red-500" : ""
           }`}
         />

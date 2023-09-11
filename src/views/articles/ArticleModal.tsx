@@ -22,8 +22,8 @@ export default function ArticleModal(prop: {
   const cancelButtonRef = useRef(null);
 
   useEffect(() => {
-    fetchArticle(article.id, setArticleData);
-  }, [article.id]);
+    if (open) fetchArticle(article.id, setArticleData);
+  }, [open, article.id]);
 
   return (
     <Transition.Root show={open} as={Fragment}>

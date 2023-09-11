@@ -28,13 +28,14 @@ function LiveGamesTile(props: {
   const { user, setUser } = useContext(UserContext);
   const { id, fav, isRunning } = props;
   const [match, setMatch] = useState<Match>();
-  const [saved, setSaved] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean | null>(null);
 
   useEffect(() => {
     getCurrentMatch(id)(setMatch);
   }, [id]);
 
   useEffect(() => {
+    if (saved === null) return;
     if (user) {
       updatePreferences(user.preferences);
     }

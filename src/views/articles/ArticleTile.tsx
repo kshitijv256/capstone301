@@ -16,7 +16,7 @@ function ArticleTile(prop: { article: Article }) {
         <img
           src={article.thumbnail}
           alt={article.sport.name}
-          className="object-cover w-full h-full rounded-md"
+          className="object-cover w-full h-full max-h-64 rounded-md"
         />
       </div>
       <div className="flex flex-col p-4">

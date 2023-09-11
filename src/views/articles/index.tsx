@@ -148,7 +148,7 @@ function NewsSection() {
           ))}
         </ul>
       </div>
-      <div className="h-[80vh] overflow-y-scroll no-scrollbar">
+      <div className="h-[80vh] overflow-y-scroll scbar dark:scbard">
         {filtered.length > 0 ? (
           filtered?.map((article) => (
             <ArticleTile key={article.id} article={article} />

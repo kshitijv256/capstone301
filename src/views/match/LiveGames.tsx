@@ -34,7 +34,10 @@ function LiveGames() {
           userTeams.includes(match.teams[0].id || match.teams[1].id)
       );
       const remaining = matches.matches.filter(
-        (match) => !filtered.includes(match)
+        (match) =>
+          !filtered.includes(match) &&
+          (userData.user?.preferences.matches?.includes(match.id) ||
+            match.isRunning)
       );
       setFilteredMatches(filtered);
       setRemainingMatches(remaining);
@@ -50,7 +53,7 @@ function LiveGames() {
       <h1 className="text-3xl text-green-600 font-semibold text-left w-full ml-8 my-2">
         Trending Games
       </h1>
-      <div className="flex w-full gap-2 overflow-x-scroll no-scrollbar">
+      <div className="flex w-full gap-2 overflow-x-scroll scbar dark:scbard">
         {userData.user ? (
           <>
             {filteredMatches.map((match) => (

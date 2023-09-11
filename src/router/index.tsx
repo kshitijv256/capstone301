@@ -5,6 +5,8 @@ import Signup from "../views/signup";
 import Logout from "../views/logout";
 // import ProtectedRoute from "./ProtectedRoute";
 import Dashboard from "../views/dashboard";
+import ResetPassword from "../views/reset";
+import ProtectedRoute from "./ProtectedRoute";
 // import SettingModal from "../views/settings";
 
 const router = createBrowserRouter([
@@ -29,18 +31,16 @@ const router = createBrowserRouter([
     element: <Logout />,
   },
   {
+    path: "reset",
+    element: (
+      <ProtectedRoute>
+        <ResetPassword />
+      </ProtectedRoute>
+    ),
+  },
+  {
     path: "dashboard",
     element: <Dashboard />,
-    // children: [
-    //   {
-    //     index: true,
-    //     element: <Navigate to="/dashboard" replace />,
-    //   },
-    //   {
-    //     path: "settings",
-    //     element: <SettingModal />,
-    //   },
-    // ],
   },
   {
     path: "*",

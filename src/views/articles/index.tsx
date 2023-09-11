@@ -77,6 +77,9 @@ function NewsSection() {
 
   useEffect(() => {
     filterFavorites(news, setFavList, user);
+    if (user) {
+      setShowFav(true);
+    }
   }, [user, news]);
 
   if (!news) {
@@ -98,18 +101,20 @@ function NewsSection() {
           className="flex flex-wrap -mb-px text-sm font-medium text-center"
           id="myTab"
         >
-          <li key={0} className="mr-2">
-            <button
-              className={`${
-                showFav ? "bg-green-400/30 dark:bg-green-600/30" : ""
-              } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
-              id="profile-tab"
-              type="button"
-              onClick={() => setShowFav(true)}
-            >
-              Favorites
-            </button>
-          </li>
+          {user != null && (
+            <li key={0} className="mr-2">
+              <button
+                className={`${
+                  showFav ? "bg-green-400/30 dark:bg-green-600/30" : ""
+                } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
+                id="profile-tab"
+                type="button"
+                onClick={() => setShowFav(true)}
+              >
+                Favorites
+              </button>
+            </li>
+          )}
           <li key={"x"} className="mr-2">
             <button
               className={`${
@@ -148,7 +153,7 @@ function NewsSection() {
           ))}
         </ul>
       </div>
-      <div className="h-[80vh] overflow-y-scroll no-scrollbar">
+      <div className="h-[80vh] overflow-y-scroll scbar dark:scbard">
         {filtered.length > 0 ? (
           filtered?.map((article) => (
             <ArticleTile key={article.id} article={article} />

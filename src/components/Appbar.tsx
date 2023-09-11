@@ -7,7 +7,10 @@ import { Link, useLocation } from "react-router-dom";
 import { ThemeContext } from "../context/theme";
 import SettingModal from "../views/settings";
 
-const userNavigation = [{ name: "Log out", href: "/logout" }];
+const userNavigation = [
+  { name: "Log out", href: "/logout" },
+  { name: "Reset password", href: "/reset" },
+];
 
 const classNames = (...classes: string[]): string =>
   classes.filter(Boolean).join(" ");
@@ -17,8 +20,6 @@ const navigation = [
   { name: "Signup", href: "/signup", current: false },
   { name: "Signin", href: "/signin", current: false },
 ];
-
-const authNavigation = [{ name: "Logout", href: "/logout", current: false }];
 
 const Appbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -34,7 +35,7 @@ const Appbar = () => {
     console.log(parsedUser);
     if (parsedUser.id) {
       setAuth(true);
-      setNav(authNavigation);
+      setNav([]);
     }
   }, []);
 
@@ -66,11 +67,13 @@ const Appbar = () => {
                 <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white dark:bg-slate-700 divide-y-2 divide-green-500 dark:dividde-green-300 ">
                   <div className="pt-5 pb-6 px-5">
                     <div className="flex items-center justify-between">
-                      <img
-                        className="h-12 w-auto"
-                        src={Logo}
-                        alt="Smarter Tasks"
-                      />
+                      <Link to={"/"}>
+                        <img
+                          className="h-12 w-auto"
+                          src={Logo}
+                          alt="Sports News"
+                        />
+                      </Link>
                       {/* <h1 className="text-2xl font-bold text-green-600">
                         Navigation
                       </h1> */}
@@ -114,7 +117,7 @@ const Appbar = () => {
                         onClick={() => setIsOpen(true)}
                         className="text-gray-900 dark:text-slate-300"
                       >
-                        Settings
+                        Preferences
                       </button>
                     )}
                     <div className="flex gap-2">
@@ -144,7 +147,9 @@ const Appbar = () => {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center justify-between w-full">
                 <div className="flex-shrink-0">
-                  <img className="h-16" src={Logo} alt="Smarter Tasks" />
+                  <Link to={"/"}>
+                    <img className="h-16 w-auto" src={Logo} alt="Sports News" />
+                  </Link>
                   {/* <h1 className="text-2xl font-bold text-green-600">
                     Need Logo
                   </h1> */}
@@ -241,7 +246,7 @@ const Appbar = () => {
                                   "w-full text-left block px-4 py-2 text-sm"
                                 )}
                               >
-                                Settings
+                                Preferences
                               </button>
                             )}
                           </Menu.Item>

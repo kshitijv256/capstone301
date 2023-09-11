@@ -101,13 +101,15 @@ function LiveGamesTile(props: {
           {match.sportName}
         </span>
         <div className="flex gap-1">
-          <button onClick={saveMatch}>
-            {user?.preferences.matches?.includes(match.id) ? (
-              <BookmarkSlashIcon className="w-5 h-5 hover:scale-110 text-green-500" />
-            ) : (
-              <BookmarkIcon className="w-5 h-5 hover:scale-110" />
-            )}
-          </button>
+          {user != null && (
+            <button onClick={saveMatch}>
+              {user?.preferences.matches?.includes(match.id) ? (
+                <BookmarkSlashIcon className="w-5 h-5 hover:scale-110 text-green-500" />
+              ) : (
+                <BookmarkIcon className="w-5 h-5 hover:scale-110" />
+              )}
+            </button>
+          )}
           <button>
             <ArrowPathIcon
               className="w-5 h-5 hover:scale-110"

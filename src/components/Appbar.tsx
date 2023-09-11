@@ -117,7 +117,7 @@ const Appbar = () => {
                         onClick={() => setIsOpen(true)}
                         className="text-gray-900 dark:text-slate-300"
                       >
-                        Settings
+                        Preferences
                       </button>
                     )}
                     <div className="flex gap-2">
@@ -246,7 +246,7 @@ const Appbar = () => {
                                   "w-full text-left block px-4 py-2 text-sm"
                                 )}
                               >
-                                Settings
+                                Preferences
                               </button>
                             )}
                           </Menu.Item>

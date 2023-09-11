@@ -103,7 +103,7 @@ function SettingModal(props: {
                                 as="h3"
                                 className="text-2xl mb-2 font-semibold leading-6 text-gray-900 dark:text-gray-100"
                               >
-                                Settings
+                                Preferences
                               </Dialog.Title>
                               <div className="flex gap-4 flex-wrap mt-4">
                                 <div>

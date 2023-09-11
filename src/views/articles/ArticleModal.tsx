@@ -59,10 +59,10 @@ export default function ArticleModal(prop: {
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[80vw]">
                 <div className="bg-white dark:bg-slate-700 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mt-3 w-full text-center sm:ml-4 sm:mt-0 sm:text-left">
+                    <div className="mt-4 w-full text-center sm:ml-4 sm:mr-2 sm:mt-2 sm:text-left">
                       <div className="flex w-full">
                         <div
-                          className="w-full h-96 shrink-0 mr-4 rounded-"
+                          className="w-full h-96 shrink-0 rounded-md"
                           style={{
                             backgroundImage:
                               "url(" + articleData.thumbnail + ")",
@@ -77,7 +77,7 @@ export default function ArticleModal(prop: {
                           /> */}
                           <button
                             type="button"
-                            className="right-0 top-0 absolute p-2"
+                            className="right-0 top-0 absolute"
                             onClick={() => setOpen(false)}
                           >
                             <XCircleIcon className="w-10 h-10 stroke-slate-800 dark:stroke-slate-200" />

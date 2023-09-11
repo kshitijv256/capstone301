@@ -18,8 +18,6 @@ const navigation = [
   { name: "Signin", href: "/signin", current: false },
 ];
 
-const authNavigation = [{ name: "Logout", href: "/logout", current: false }];
-
 const Appbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [enabled, setEnabled] = useState(theme == "dark" ? true : false);
@@ -34,7 +32,7 @@ const Appbar = () => {
     console.log(parsedUser);
     if (parsedUser.id) {
       setAuth(true);
-      setNav(authNavigation);
+      setNav([]);
     }
   }, []);
 

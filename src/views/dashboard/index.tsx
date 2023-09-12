@@ -5,6 +5,7 @@ import NewsSection from "../articles";
 import { UserContext } from "../../context/user";
 import { me } from "../../utils/apiUtils";
 import { User } from "../../types/user";
+import ErrorBoundary from "../../ErrorBoundary";
 
 const fetchUser = async (setUser: (data: User) => void) => {
   const user: User = await me();
@@ -19,12 +20,18 @@ function Dashboard() {
   return (
     <>
       <div className="h-screen overflow-y-auto no-scrollbar bg-gray-100 dark:bg-slate-800 m-0 p-0">
-        <Appbar />
+        <ErrorBoundary>
+          <Appbar />
+        </ErrorBoundary>
         <div className="flex w-full justify-center">
-          <LiveGames />
+          <ErrorBoundary>
+            <LiveGames />
+          </ErrorBoundary>
         </div>
         <div className="py-2 px-4">
-          <NewsSection />
+          <ErrorBoundary>
+            <NewsSection />
+          </ErrorBoundary>
         </div>
       </div>
     </>

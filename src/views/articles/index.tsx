@@ -55,6 +55,8 @@ function NewsSection() {
   const [filtered, setFiltered] = useState<Article[]>([]);
   const [favList, setFavList] = useState<Article[]>([]);
   const [showFav, setShowFav] = useState<boolean>(false);
+  const [showSaved, setShowSaved] = useState<boolean>(false);
+  const [saved, setSaved] = useState<Article[]>([]);
 
   useEffect(() => {
     fetchSports(setSports);
@@ -62,7 +64,7 @@ function NewsSection() {
   }, []);
 
   useEffect(() => {
-    if (!showFav) {
+    if (!showFav && !showSaved) {
       if (selectedSport && news) {
         const list = filteredNews(news, selectedSport);
         setFiltered(list);
@@ -70,15 +72,26 @@ function NewsSection() {
       if (selectedSport == null) {
         setFiltered(news || []);
       }
-    } else {
+    } else if (showFav) {
       setFiltered(favList);
+    } else if (showSaved) {
+      setFiltered(saved);
     }
-  }, [selectedSport, news, showFav, favList]);
+  }, [selectedSport, news, showFav, favList, showSaved, saved]);
 
   useEffect(() => {
     filterFavorites(news, setFavList, user);
     if (user) {
       setShowFav(true);
+    }
+  }, [user, news]);
+
+  useEffect(() => {
+    if (user) {
+      const savedArticles = news.filter((article) =>
+        user.preferences.articles?.includes(article.id)
+      );
+      setSaved(savedArticles);
     }
   }, [user, news]);
 
@@ -107,11 +120,16 @@ function NewsSection() {
             <li key={0} className="mr-2">
               <button
                 className={`${
-                  showFav ? "bg-green-400/30 dark:bg-green-600/30" : ""
+                  showFav && !showSaved
+                    ? "bg-green-400/30 dark:bg-green-600/30"
+                    : ""
                 } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
                 id="profile-tab"
                 type="button"
-                onClick={() => setShowFav(true)}
+                onClick={() => {
+                  setShowFav(true);
+                  setShowSaved(false);
+                }}
               >
                 Favorites
               </button>
@@ -120,7 +138,7 @@ function NewsSection() {
           <li key={"x"} className="mr-2">
             <button
               className={`${
-                selectedSport === null && !showFav
+                selectedSport === null && !showFav && !showSaved
                   ? "bg-green-400/30 dark:bg-green-600/30"
                   : ""
               } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
@@ -128,6 +146,7 @@ function NewsSection() {
               type="button"
               onClick={() => {
                 setShowFav(false);
+                setShowSaved(false);
                 setSelectedSport(null);
               }}
             >
@@ -138,7 +157,7 @@ function NewsSection() {
             <li key={sport.id} className="mr-2">
               <button
                 className={`${
-                  selectedSport === sport && !showFav
+                  selectedSport === sport && !showFav && !showSaved
                     ? "bg-green-400/30 dark:bg-green-600/30"
                     : ""
                 } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
@@ -146,6 +165,7 @@ function NewsSection() {
                 type="button"
                 onClick={() => {
                   setShowFav(false);
+                  setShowSaved(false);
                   setSelectedSport(sport);
                 }}
               >
@@ -153,6 +173,24 @@ function NewsSection() {
               </button>
             </li>
           ))}
+          <li key={"s"} className="mr-2">
+            <button
+              className={`${
+                showSaved && !showFav
+                  ? "bg-green-400/30 dark:bg-green-600/30"
+                  : ""
+              } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
+              id="profile-tab"
+              type="button"
+              onClick={() => {
+                setShowFav(false);
+                // setSelectedSport(null);
+                setShowSaved(true);
+              }}
+            >
+              Saved
+            </button>
+          </li>
         </ul>
       </div>
       <div className="h-[80vh] overflow-y-scroll scbar dark:scbard">

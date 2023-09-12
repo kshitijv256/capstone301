@@ -24,7 +24,7 @@ function ArticleTile(prop: { article: Article }) {
           {article.sport.name}
         </p>
 
-        <p className="font-bold text-lg mb-1 flex justify-between w-full items-center">
+        <p className="font-serif font-bold text-2xl mb-1 flex justify-between w-full items-center">
           {article.title}
         </p>
         <p className="mt-1">{article.summary}</p>

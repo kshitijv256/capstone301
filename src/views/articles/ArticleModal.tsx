@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Article } from "../../types/articles";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { getArticle } from "../../utils/apiUtils";
+import Loading from "../../components/Loading";
 
 const fetchArticle = async (
   id: number,
@@ -88,11 +89,11 @@ export default function ArticleModal(prop: {
                         <div className="flex flex-col w-4/5 justify-between mt-[-80px] bg-white dark:bg-slate-700 z-20 relative rounded-md p-4">
                           <Dialog.Title
                             as="h3"
-                            className="text-2xl mb-2 font-semibold leading-6 text-gray-900 dark:text-gray-100"
+                            className="font-serif text-3xl tracking-wide mb-2 font-semibold leading-6 text-gray-900 dark:text-gray-100"
                           >
                             {articleData.title}
                           </Dialog.Title>
-                          <p className="my-2 p-1.5 rounded-lg bg-gray-200 dark:bg-gray-500 text-gray-800 dark:text-gray-200 w-min whitespace-nowrap">
+                          <p className="my-2 p-1.5 rounded-md bg-gray-200 dark:bg-slate-600 text-gray-800 dark:text-gray-200 w-min whitespace-nowrap">
                             {articleData.sport.name}
                           </p>
                           <p className="text-gray-800 dark:text-gray-200 italic my-1">
@@ -110,11 +111,17 @@ export default function ArticleModal(prop: {
                           ) : null}
                         </div>
                       </div>
-                      <div className="my-4">
-                        <p className="text-lg text-gray-700 dark:text-gray-200 first-letter:text-3xl tracking-wide">
-                          {articleData.content}
-                        </p>
-                      </div>
+                      {articleData.content ? (
+                        <div className="my-4">
+                          <p className="text-lg text-gray-700 dark:text-gray-200 first-letter:text-3xl tracking-wide">
+                            {articleData.content}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="w-full flex justify-center">
+                          <Loading />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Article } from "../../types/articles";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { getArticle } from "../../utils/apiUtils";
+import Loading from "../../components/Loading";
 
 const fetchArticle = async (
   id: number,
@@ -110,11 +111,17 @@ export default function ArticleModal(prop: {
                           ) : null}
                         </div>
                       </div>
-                      <div className="my-4">
-                        <p className="text-lg text-gray-700 dark:text-gray-200 first-letter:text-3xl tracking-wide">
-                          {articleData.content}
-                        </p>
-                      </div>
+                      {articleData.content ? (
+                        <div className="my-4">
+                          <p className="text-lg text-gray-700 dark:text-gray-200 first-letter:text-3xl tracking-wide">
+                            {articleData.content}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="w-full flex justify-center">
+                          <Loading />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

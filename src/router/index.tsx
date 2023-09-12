@@ -1,11 +1,12 @@
+import React, { Suspense } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
-import Signin from "../views/signin";
-import Signup from "../views/signup";
+const Signin = React.lazy(() => import("../views/signin"));
+const Signup = React.lazy(() => import("../views/signup"));
 import Logout from "../views/logout";
 // import ProtectedRoute from "./ProtectedRoute";
-import Dashboard from "../views/dashboard";
-import ResetPassword from "../views/reset";
+const Dashboard = React.lazy(() => import("../views/dashboard"));
+const ResetPassword = React.lazy(() => import("../views/reset"));
 import ProtectedRoute from "./ProtectedRoute";
 // import SettingModal from "../views/settings";
 
@@ -20,11 +21,19 @@ const router = createBrowserRouter([
   // },
   {
     path: "/signin",
-    element: <Signin />,
+    element: (
+      <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+        <Signin />
+      </Suspense>
+    ),
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: (
+      <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+        <Signup />
+      </Suspense>
+    ),
   },
   {
     path: "/logout",
@@ -34,13 +43,19 @@ const router = createBrowserRouter([
     path: "reset",
     element: (
       <ProtectedRoute>
-        <ResetPassword />
+        <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+          <ResetPassword />
+        </Suspense>
       </ProtectedRoute>
     ),
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
+        <Dashboard />
+      </Suspense>
+    ),
   },
   {
     path: "*",

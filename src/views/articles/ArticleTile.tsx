@@ -7,16 +7,16 @@ function ArticleTile(prop: { article: Article }) {
   const { article } = prop;
   return (
     <div
-      className="flex rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 my-4 mx-2 
+      className="flex flex-col sm:flex-row rounded-md shadow-sm shadow-gray-400 dark:shadow-gray-900 my-4 mx-2 
             flex-grow-0 flex-shrink-0
             bg-white dark:bg-slate-700 dark:text-slate-300"
       onClick={() => setOpen(true)}
     >
-      <div className="w-48 shrink-0">
+      <div className="w-full sm:w-48 shrink-0">
         <img
           src={article.thumbnail}
           alt={article.sport.name}
-          className="object-cover w-full h-full max-h-64 rounded-l-md"
+          className="object-cover w-full h-full max-h-64 rounded-t-md sm:rounded-l-md"
         />
       </div>
       <div className="flex flex-col p-4">

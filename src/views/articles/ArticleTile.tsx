@@ -20,7 +20,7 @@ function ArticleTile(prop: { article: Article }) {
         />
       </div>
       <div className="flex flex-col p-4">
-        <p className="mb-1 px-1.5 py-1 rounded-md bg-gray-200 dark:bg-gray-600 w-min whitespace-nowrap">
+        <p className="mb-1 px-1.5 py-1 rounded-md bg-gray-200 dark:bg-slate-600 w-min whitespace-nowrap">
           {article.sport.name}
         </p>
 

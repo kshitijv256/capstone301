@@ -101,7 +101,7 @@ function SettingModal(props: {
                             <div className="flex flex-col">
                               <Dialog.Title
                                 as="h3"
-                                className="text-2xl mb-2 font-semibold leading-6 text-gray-900 dark:text-gray-100"
+                                className="font-serif text-3xl my-2 font-semibold leading-6 text-gray-900 dark:text-gray-100"
                               >
                                 Preferences
                               </Dialog.Title>

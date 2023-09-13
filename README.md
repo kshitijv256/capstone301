@@ -3,7 +3,7 @@
 It is a Web App made using React + Typescript + Tailwind which provides users latest sports news and articles.
 
 ### Link
-[Try it out](https://capstone-301-kshitij.netlify.app/)
+[Try it out](https://main--capstone-301-kshitij.netlify.app/)
 
 ### Features
 

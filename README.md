@@ -5,6 +5,10 @@ It is a Web App made using React + Typescript + Tailwind which provides users la
 ### Link
 [Try it out](https://main--capstone-301-kshitij.netlify.app/)
 
+### Demo
+
+[Watch it](https://www.loom.com/share/Action-Project-Submission-Demo-7d13bc675fcb4d73991ea045c2df36c6?sid=c70e464e-94f7-4a68-a313-3dbc45642bbc)
+
 ### Features
 
 - User authentication

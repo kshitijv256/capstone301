@@ -58,9 +58,9 @@ export default function ArticleModal(prop: {
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-[80vw]">
-                <div className="bg-white dark:bg-slate-700 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                <div className="bg-white dark:bg-slate-700">
                   <div className="sm:flex sm:items-start">
-                    <div className="mt-4 w-full text-center sm:ml-4 sm:mr-2 sm:mt-2 sm:text-left">
+                    <div className="w-full text-center sm:text-left">
                       <div className="flex w-full">
                         <div
                           className="w-full h-96 shrink-0 rounded-md"
@@ -71,11 +71,6 @@ export default function ArticleModal(prop: {
                             backgroundPosition: "center",
                           }}
                         >
-                          {/* <img
-                            src={articleData.thumbnail}
-                            alt={articleData.sport.name}
-                            className="object-cover w-full h-full rounded-md"
-                          /> */}
                           <button
                             type="button"
                             className="right-0 top-0 absolute"
@@ -112,7 +107,7 @@ export default function ArticleModal(prop: {
                         </div>
                       </div>
                       {articleData.content ? (
-                        <div className="my-4">
+                        <div className="my-4 sm:px-8 p-2">
                           <p className="text-lg text-gray-700 dark:text-gray-200 first-letter:text-3xl tracking-wide">
                             {articleData.content}
                           </p>

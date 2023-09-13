@@ -30,7 +30,6 @@ const SignupForm: React.FC = () => {
       localStorage.setItem("authToken", data.auth_token);
       localStorage.setItem("userData", JSON.stringify(data.user));
       navigate("/");
-      // Dialogue: After successful signup we have to redirect the user to the secured page. We will do that later.
     } catch (error: any) {
       setError(error.message);
     }

@@ -6,7 +6,10 @@ import { UserContext } from "../../context/user";
 
 const fetchMatches = async (setMatchesCB: (data: Matches) => void) => {
   const data: Matches = await getMatches();
-  setMatchesCB(data);
+  const sorted = data.matches.sort((a, b) => {
+    return b.isRunning ? 1 : -1;
+  });
+  setMatchesCB({ matches: sorted });
 };
 
 function LiveGames() {

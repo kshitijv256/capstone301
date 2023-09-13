@@ -4,21 +4,15 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 const Signin = React.lazy(() => import("../views/signin"));
 const Signup = React.lazy(() => import("../views/signup"));
 import Logout from "../views/logout";
-// import ProtectedRoute from "./ProtectedRoute";
-const Dashboard = React.lazy(() => import("../views/dashboard"));
 const ResetPassword = React.lazy(() => import("../views/reset"));
 import ProtectedRoute from "./ProtectedRoute";
-// import SettingModal from "../views/settings";
+import Dashboard from "../views/dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to="/dashboard" replace />,
   },
-  // {
-  //   path: "/",
-  //   element: <Signin />,
-  // },
   {
     path: "/signin",
     element: (
@@ -51,11 +45,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: (
-      <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
-        <Dashboard />
-      </Suspense>
-    ),
+    element: <Dashboard />,
   },
   {
     path: "*",

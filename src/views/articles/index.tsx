@@ -173,24 +173,26 @@ function NewsSection() {
               </button>
             </li>
           ))}
-          <li key={"s"} className="mr-2">
-            <button
-              className={`${
-                showSaved && !showFav
-                  ? "bg-green-400/30 dark:bg-green-600/30"
-                  : ""
-              } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
-              id="profile-tab"
-              type="button"
-              onClick={() => {
-                setShowFav(false);
-                // setSelectedSport(null);
-                setShowSaved(true);
-              }}
-            >
-              Saved
-            </button>
-          </li>
+          {user != null ? (
+            <li key={"s"} className="mr-2">
+              <button
+                className={`${
+                  showSaved && !showFav
+                    ? "bg-green-400/30 dark:bg-green-600/30"
+                    : ""
+                } inline-block p-4 rounded-t-lg text-green-600 hover:text-green-700 dark:hover:text-green-500`}
+                id="profile-tab"
+                type="button"
+                onClick={() => {
+                  setShowFav(false);
+                  // setSelectedSport(null);
+                  setShowSaved(true);
+                }}
+              >
+                Saved
+              </button>
+            </li>
+          ) : null}
         </ul>
       </div>
       <div className="h-[80vh] overflow-y-scroll scbar dark:scbard">

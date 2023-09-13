@@ -57,7 +57,7 @@ function ArticleTile(prop: { article: Article }) {
           className="object-cover w-full h-full max-h-64 rounded-t-md sm:rounded-l-md"
         />
       </div>
-      <div className="flex flex-col p-4 w-full">
+      <div className="flex flex-col p-4 w-full justify-between">
         <div className="flex w-full justify-between">
           <p className="mb-1 px-1.5 py-1 rounded-md bg-gray-200 dark:bg-slate-600 w-min whitespace-nowrap">
             {article.sport.name}

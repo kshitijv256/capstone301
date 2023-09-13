@@ -9,7 +9,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider>
       <UserProvider>
-        <App />
+        <>
+          <App />
+        </>
       </UserProvider>
     </ThemeProvider>
   </React.StrictMode>

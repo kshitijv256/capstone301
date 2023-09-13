@@ -9,6 +9,7 @@ export default defineConfig({
     VitePWA({
       devOptions: {
         enabled: true, // For making sure that the PWA is testable from the Local dev environment
+        type: "module",
       },
       manifest: {
         name: "Sports News application",

@@ -7,6 +7,7 @@ It is a Web App made using React + Typescript + Tailwind which provides users la
 
 ### Demo
 
+You can see the app in action here:
 [Watch it](https://www.loom.com/share/Action-Project-Submission-Demo-7d13bc675fcb4d73991ea045c2df36c6?sid=c70e464e-94f7-4a68-a313-3dbc45642bbc)
 
 ### Features
@@ -14,7 +15,8 @@ It is a Web App made using React + Typescript + Tailwind which provides users la
 - User authentication
 - Open to unsigned users as well
 - Users can see latest match scores and articles
-- Authenticated users can set their preferences to get customized feed and save any match or article they like
+- Authenticated users can set their preferences to get customized feed
+- Authenticated users can save or unsave any match or article they like by clicking on bookmark icon
 
 ### Screenshots
 ![Screenshot from 2023-09-13 02-27-34](https://github.com/kshitijv256/capstone301/assets/101321276/029f2f56-800f-4108-b0a5-e3038de87484)
